@@ -3,7 +3,7 @@ set -e
 
 DOTFILESDIR=~/dotfiles
 DOTFILES_BACKUP_DIR=~/dotfiles_old             # old dotfiles backup directory
-DOTFILES_LIST=".inputrc .bash_profile .vimrc .vim .gitconfig .gitignoreglobal"
+DOTFILES_LIST=".inputrc .bash_profile .vimrc .gitconfig .gitignoreglobal"
 BOOTSTRAP_COMPLETED_FILE="$DOTFILESDIR/bootstrap_completed"
 
 
@@ -32,3 +32,4 @@ done
 
 touch "$DOTFILESDIR/bootstrap_completed"
 echo Bootstrapping completed
+

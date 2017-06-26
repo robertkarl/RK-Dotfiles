@@ -1,4 +1,5 @@
-set hidden
+" hides buffers instead of closing by default (allows using :e while buffer has changes)
+set hidden 
 
 set shiftwidth=4
 set number
@@ -14,10 +15,3 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-
-set autochdir
-
-set mouse=a
-
-" Switch header files
-nnoremap <Leader>a :A<Return>
