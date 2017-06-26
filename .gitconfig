@@ -1,0 +1,7 @@
+[user]
+	email = robert@noreply.net
+	name = Robert Karl
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore_global
