@@ -1,25 +1,34 @@
-dir=~/dotfiles                   # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-files=".inputrc .bash_profile .vimrc .vim .hgrc .gitconfig"
+#!/bin/bash
+set -e
 
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
+DOTFILESDIR=~/dotfiles
+DOTFILES_BACKUP_DIR=~/dotfiles_old             # old dotfiles backup directory
+DOTFILES_LIST=".inputrc .bash_profile .vimrc .vim .gitconfig .gitignoreglobal"
+BOOTSTRAP_COMPLETED_FILE="$DOTFILESDIR/bootstrap_completed"
+
+
+if [ -f $BOOTSTRAP_COMPLETED_FILE ]; then
+    echo "ERROR. Bootstrap already completed. (file BOOTSTRAP_COMPLETED_FILE exists)."
+    exit -1
+fi;
+
+echo "Creating $DOTFILES_BACKUP_DIR for backup of any existing dotfiles in ~"
+mkdir -p $DOTFILES_BACKUP_DIR
 echo "...done"
  
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
- 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
-for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/$file
+for dfile in $DOTFILES_LIST; do
+    if [ -L ~/$dfile ]; then
+        echo "$dfile is a symbolic link; removing"
+        rm ~/$dfile
+    fi
+    if [ -e ~/$dfile ]; then
+        echo "backing up $DOTFILES_BACKUP_DIR/$dfile"
+        mv ~/$dfile $DOTFILES_BACKUP_DIR
+    fi
+
+    echo "Symlinking $DOTFILESDIR/$dfile to home"
+    ln -s $DOTFILESDIR/$dfile ~/$dfile
 done
- 
-echo "Creating tmp vim files"
-mkdir ~/.vimbackup ~/.vimtmp
-source ~/.bash_profile
 
-echo lulz
+touch "$DOTFILESDIR/bootstrap_completed"
+echo Bootstrapping completed

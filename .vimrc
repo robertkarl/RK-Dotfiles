@@ -1,11 +1,9 @@
 set hidden
-source ~/.vim/bundle/a.vim
 
-filetype plugin indent on
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
 set number
 set laststatus=2
+set statusline+=%f
 
 set wildmenu
 set wildmode=list:longest,full
@@ -20,9 +18,6 @@ set smartcase
 set autochdir
 
 set mouse=a
-
-set backup
-set backupdir=~/.vimbackup
 
 " Switch header files
 nnoremap <Leader>a :A<Return>
