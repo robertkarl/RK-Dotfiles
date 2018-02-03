@@ -46,6 +46,7 @@ fi
 # Prompt
 export PROMPT_COMMAND=__prompt_command  # Func to gen PS1 after CMDs
 function __prompt_command() {
+    history -a # Write the history after every command
     local EXIT="$?"             # This needs to be first
     PS1=""
 
@@ -68,3 +69,8 @@ function __prompt_command() {
 }
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+########
+# Check for local bash_profile stuff 
+if [ -f "${HOME}/.bash_profile.local" ]; then
+    source "${HOME}/.bash_profile.local"
+fi
