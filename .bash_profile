@@ -70,7 +70,8 @@ function __prompt_command() {
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 ########
-# Check for local bash_profile stuff 
-if [ -f "${HOME}/.bash_profile.local" ]; then
-    source "${HOME}/.bash_profile.local"
-fi
+# Check for local bash_profile files
+for fname in "${HOME}/.bash_profile.local" "${HOME}/bin/git-completion.bash";
+do
+    source "${fname}"
+done
