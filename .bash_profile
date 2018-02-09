@@ -1,3 +1,4 @@
+# Requires git-prompt.sh for the prompt to include git branch and state
 
 unameval="$(uname -s)"
 case "${unameval}" in
@@ -44,6 +45,9 @@ fi
 
 ########
 # Prompt
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUPSTREAM=1
 export PROMPT_COMMAND=__prompt_command  # Func to gen PS1 after CMDs
 function __prompt_command() {
     history -a # Write the history after every command
@@ -58,7 +62,7 @@ function __prompt_command() {
     local BBlu='\[\e[1;34m\]'
     local Pur='\[\e[0;35m\]'
 
-    PS1+="\u @ \h \w\n"
+    PS1+="\u @ \h \w$(__git_ps1) \n"
 
     if [ $EXIT != 0 ]; then
         PS1+="${Red}\$ ${RCol}"      # Add red if exit code non 0
