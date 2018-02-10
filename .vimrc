@@ -20,7 +20,32 @@ set statusline+=%f
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,full
+set showcmd
 
+inoremap <c-d> <esc>ddi
+inoremap <m-u> <esc>viwUi
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"mappings don't take into account what characters come before or after;
+"abbrevs do.
+iabbrev @@ robertkarljr@gmail.com
+iabbrev ssig -- <cr>Robert Karl<cr>robertkarljr@gmail.com
+iabbrev i32 int32_t
+iabbrev @F FREEZER
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lell
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lell
+
+" Move between tabs with leader + number, or leader + h/l
+nnoremap <leader>1 :1tabnext<cr>
+nnoremap <leader>2 :2tabnext<cr>
+nnoremap <leader>3 :3tabnext<cr>
+nnoremap <leader>4 :4tabnext<cr>
+nnoremap <leader>5 :5tabnext<cr>
+nnoremap <c-h> :tabprev<cr>
+nnoremap <c-l> :tabnext<cr>
+" quotes the word where the cursor is
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>l
 
 "
 " Install with curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -33,6 +58,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jlanzarotta/bufexplorer'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Search related stuff
