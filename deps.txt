@@ -1,0 +1,13 @@
+dkms
+git
+htop
+iftop
+iotop
+ipython3
+lm-sensors
+openssh-server
+python3-pip
+qterminal
+silversearcher-ag
+tmux
+vim-gtk
