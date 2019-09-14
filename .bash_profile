@@ -1,4 +1,5 @@
 # Requires git-prompt.sh for the prompt to include git branch and state
+source ~/.bash_aliases
 
 unameval="$(uname -s)"
 case "${unameval}" in
